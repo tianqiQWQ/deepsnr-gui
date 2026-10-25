@@ -1,0 +1,20 @@
+# Build outputs
+dist/
+*.exe
+*.pdb
+*.ilk
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Test artifacts
+testdata/
+*.tmp
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store

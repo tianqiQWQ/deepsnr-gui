@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a problem with the DeepSNR GUI wrapper
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. This is an **unofficial** GUI wrapper; do not
+        attach DeepSNR installers, model files, or DeepSNR output images.
+        Please describe your Windows version, DeepSNR CLI version, and the exact
+        error text from the log.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Steps to reproduce and the expected behavior.
+    validations:
+      required: true
+  - type: input
+    id: deepsnr-version
+    attributes:
+      label: DeepSNR CLI version
+      description: Run `deepsnr --version` (or click the log's Info lines).
+      placeholder: e.g. 1.3.2 (0147)
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: e.g. Windows 11 23H2
+  - type: textarea
+    id: log
+    attributes:
+      label: Log / error message
+      description: Paste the relevant lines from the GUI's "运行日志" panel (remove personal paths if you wish).
+      render: text
+  - type: checkboxes
+    id: legal
+    attributes:
+      label: Confirmation
+      options:
+        - label: I confirm this report does not include DeepSNR binaries, model files, or DeepSNR output images.
+          required: true

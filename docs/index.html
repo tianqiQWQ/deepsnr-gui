@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DeepSNR GUI — 非官方 DeepSNR 桌面界面</title>
+  <meta name="description" content="给 DeepSNR 命令行工具做的非官方 Windows 图形界面：拖拽处理、实时进度、100% 前后对比预览。不捆绑、不分发 DeepSNR 本体，需自行安装官方 CLI。">
+  <meta property="og:title" content="DeepSNR GUI — 非官方 DeepSNR 桌面界面">
+  <meta property="og:description" content="拖拽、预览、批量的 DeepSNR 桌面 GUI。仅调用本地已安装的官方 deepsnr.exe。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="./">
+      <span class="brand-mark">D</span>
+      <span class="brand-text">DeepSNR GUI <em>非官方</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">功能</a>
+      <a href="#start">快速开始</a>
+      <a href="#legal">许可</a>
+      <a id="github-link" class="github" href="https://starnetastro.com/cli-tools/deepsnr/" target="_blank" rel="noopener">官方 DeepSNR ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="badges">
+        <span>UNOFFICIAL</span><span>WINDOWS 10 / 11</span><span>MIT</span>
+      </div>
+      <h1>给 DeepSNR 命令行工具<br><span class="grad">加一个顺手的桌面界面</span></h1>
+      <p class="lead">
+        拖拽图片、设置参数、实时进度、100% 前后对比——不用 PixInsight，也不用 Photoshop。
+        仅调用你本地已安装的官方 <code>deepsnr.exe</code>，<strong>不捆绑、不镜像、不分发 DeepSNR 本体</strong>。
+      </p>
+      <div class="cta">
+        <a id="download-link" class="btn primary" href="#start">下载 / 安装</a>
+        <a id="repo-link" class="btn ghost" href="#legal">查看源码</a>
+        <a class="btn ghost" href="https://starnetastro.com/cli-tools/deepsnr/" target="_blank" rel="noopener">官方 DeepSNR 下载 ↗</a>
+      </div>
+
+      <figure class="shot">
+        <img src="assets/main-window.png" alt="DeepSNR GUI 界面截图，使用合成测试图，结果面板为空" loading="lazy" width="1600" height="1166">
+        <figcaption>界面示意 · 合成测试图 · 使用前需自行安装官方 DeepSNR CLI</figcaption>
+      </figure>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-head">
+        <h2>为“没有 PI / PS”的人准备</h2>
+        <p>官方目前提供 PixInsight 模块、Photoshop 插件、命令行工具三种形式。这个项目用官方许可允许的方式（独立进程调用 CLI）补上桌面 GUI 的空白。</p>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="ico">🖼️</div><h3>拖拽即用</h3><p>TIFF / PNG / FITS / JPEG，直接拖进窗口；支持一次拖入多张自动排队。</p></article>
+        <article class="card"><div class="ico">🔍</div><h3>真正的前后预览</h3><p>左右并排对比，50% / 100% / 200% / 400% 缩放，同步平移，按像素检查降噪效果。</p></article>
+        <article class="card"><div class="ico">🧩</div><h3>自动处理 alpha</h3><p>4 通道 PNG/TIFF 会自动转成无 alpha 的 3 通道临时文件再交给 DeepSNR，处理完自动清理。</p></article>
+        <article class="card"><div class="ico">⚡</div><h3>参数与进度</h3><p>模型 1/2、stride、线性 FITS（--linear 等）参数；进度条、完整日志、取消一应俱全。</p></article>
+        <article class="card"><div class="ico">🖥️</div><h3>多显示器友好</h3><p>Per-Monitor V2 DPI 适配，从 150% 主屏拖到 125% 副屏也不会被裁切或模糊。</p></article>
+        <article class="card"><div class="ico">📷</div><h3>Lightroom 流程</h3><p>LR 导出 16-bit TIFF → 拖进 GUI 处理 → 把 *_denoised.tif 导回 LR，无需 PS/PI。</p></article>
+      </div>
+    </section>
+
+    <section id="start" class="section">
+      <div class="section-head">
+        <h2>快速开始</h2>
+        <p>本仓库不包含 DeepSNR 本体。先装官方 CLI，再运行本 GUI。</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div>
+            <h3>安装官方 DeepSNR CLI</h3>
+            <p>从官方页面下载 Windows 安装包并安装（默认 <code>D:\DeepSNR</code> 或 <code>C:\Program Files\DeepSNR</code>）。使用 DeepSNR 需接受其许可协议。</p>
+            <p><a href="https://starnetastro.com/cli-tools/deepsnr/" target="_blank" rel="noopener">starnetastro.com/cli-tools/deepsnr →</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div>
+            <h3>获取本 GUI</h3>
+            <p>从 Releases 下载 <code>DeepSNR_GUI.exe</code>（Windows 10/11 自带 .NET Framework 4.8），或自行编译：</p>
+<pre><code>git clone https://github.com/OWNER/deepsnr-gui.git
+cd deepsnr-gui
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1</code></pre>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div>
+            <h3>双击运行</h3>
+            <p>在 Windows 资源管理器里双击 <code>DeepSNR_GUI.exe</code>，把图片拖进窗口 → 开始去噪。</p>
+            <div class="warn">请勿从聊天窗口、文件卡片或沙箱环境启动：那种方式权限过低，只能写工作区，处理桌面图片会报“访问被拒绝”。</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section compare">
+      <div class="section-head">
+        <h2>官方形式 vs 本项目</h2>
+        <p>DeepSNR 官方提供三种使用方式；本项目是第四种“非官方桌面 GUI”。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>形式</th><th>适合</th><th>需要</th></tr></thead>
+          <tbody>
+            <tr><td>PixInsight 模块</td><td>PixInsight 用户</td><td>PixInsight</td></tr>
+            <tr><td>Photoshop 插件</td><td>Photoshop 用户</td><td>Photoshop 26.11.7+</td></tr>
+            <tr><td>命令行工具 / Siril 脚本</td><td>自动化、脚本、其他软件调用</td><td>命令行</td></tr>
+            <tr class="hi"><td><strong>本项目（非官方 GUI）</strong></td><td>没有 PI / PS 的桌面用户，例如 Lightroom 用户</td><td>官方 CLI + 本 GUI</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="legal" class="section legal">
+      <div class="section-head">
+        <h2>许可与合规</h2>
+        <p>这是非官方项目。以下说明用于避免误解（不构成法律意见）。</p>
+      </div>
+      <div class="legal-grid">
+        <div class="legal-box">
+          <h3>不包含 DeepSNR</h3>
+          <p>本仓库不包含、不镜像、不缓存、不重新分发 DeepSNR 的可执行文件、模型权重或安装包。请从官方渠道下载安装。</p>
+        </div>
+        <div class="legal-box">
+          <h3>非官方、无隶属</h3>
+          <p>DeepSNR 是 Mikita (Nikita) Misiura 的产品。本项目与 StarNet Software 没有隶属关系，也未获其背书。</p>
+        </div>
+        <div class="legal-box">
+          <h3>许可允许的集成</h3>
+          <p>DeepSNR 许可允许其他应用/脚本以独立进程方式调用其 CLI。本 GUI 即采用这种方式，并在界面中保留产品名与许可入口。</p>
+        </div>
+        <div class="legal-box">
+          <h3>本项目 MIT</h3>
+          <p>GUI 源代码采用 MIT License。截图使用自行生成的合成测试图，并清空了结果预览，不包含 DeepSNR 输出图像。</p>
+        </div>
+      </div>
+      <p class="legal-note">
+        商业打包分发、镜像或其他超出许可范围的用途，请先联系 StarNet Software 取得书面许可：
+        <a href="https://starnetastro.com/contact/" target="_blank" rel="noopener">官方联系页面 ↗</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>DeepSNR GUI</strong> · 非官方项目 · MIT License
+    </div>
+    <div class="foot-links">
+      <a href="https://starnetastro.com/" target="_blank" rel="noopener">StarNet Software</a>
+      <a href="https://starnetastro.com/cli-tools/deepsnr/" target="_blank" rel="noopener">DeepSNR CLI</a>
+      <a id="repo-foot" href="#legal">源代码</a>
+    </div>
+    <div class="foot-note">© <span id="year">2026</span> DeepSNR GUI contributors · 不包含 DeepSNR 二进制或模型文件</div>
+  </footer>
+
+  <script>
+    (function () {
+      var m = location.hostname.match(/^([^.]+)\.github\.io$/i);
+      var parts = location.pathname.split('/').filter(Boolean);
+      var repoName = parts.length ? parts[0] : '';
+      var gh = document.getElementById('github-link');
+      if (m && repoName) {
+        var base = 'https://github.com/' + m[1] + '/' + repoName;
+        gh.href = base;
+        gh.textContent = 'GitHub ↗';
+        var repo = document.getElementById('repo-link');
+        repo.href = base;
+        repo.textContent = '查看源码';
+        var dl = document.getElementById('download-link');
+        dl.href = base + '/releases';
+        var foot = document.getElementById('repo-foot');
+        foot.href = base;
+      }
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

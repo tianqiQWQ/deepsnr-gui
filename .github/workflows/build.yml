@@ -1,0 +1,25 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build with Windows csc.exe
+        shell: pwsh
+        run: ./build.ps1
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeepSNR_GUI-windows-x64
+          path: dist/DeepSNR_GUI.exe
+          if-no-files-found: error
